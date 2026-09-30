@@ -1,0 +1,14 @@
+{
+  "name": "mit-research-interview-rl",
+  "private": true,
+  "scripts": {
+    "dev": "slidev slides.md --port 3030",
+    "build": "slidev build slides.md",
+    "export": "slidev export slides.md --output .qa/presentation.pdf"
+  },
+  "devDependencies": {
+    "@slidev/cli": "0.48.8",
+    "@slidev/theme-default": "0.25.0",
+    "playwright-chromium": "1.60.0"
+  }
+}

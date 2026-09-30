@@ -1,0 +1,57 @@
+:root {
+  --slidev-theme-primary: #173b5c;
+}
+
+.slidev-layout {
+  background: #fafafa;
+  color: #182632;
+  padding: 2.2rem 3rem;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.slidev-layout h1 {
+  color: #173b5c;
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.1rem;
+}
+
+.slidev-layout h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.85rem 0 0.5rem;
+}
+
+.slidev-layout p { margin: 0.65rem 0; }
+.slidev-layout li { margin: 0.4rem 0; }
+.slidev-layout .katex-display { margin: 0.65rem 0; font-size: 0.96em; }
+.slidev-layout table { width: 100%; font-size: 0.96rem; }
+.slidev-layout th { color: #173b5c; }
+.slidev-layout td, .slidev-layout th { padding: 0.55rem 0.7rem; }
+.slidev-layout .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.slidev-layout .small { font-size: 0.88rem; line-height: 1.45; }
+.slidev-layout .source { color: #536573; font-size: 0.72rem; margin-top: 0.9rem; }
+.slidev-layout .takeaway { color: #173b5c; font-weight: 600; margin-top: 1rem; }
+.slidev-layout .figure { display: block; margin: 0.4rem auto; max-width: 100%; object-fit: contain; }
+.slidev-layout .figure-large { max-height: 22rem; }
+.slidev-layout .figure-backup { max-height: 25rem; }
+.slidev-layout .cover-title { font-size: 2.6rem; max-width: 48rem; margin-top: 3rem; }
+.slidev-layout .subtitle { font-size: 1.35rem; color: #536573; }
+.slidev-layout .cover-authors { margin-top: 2rem; }
+.slidev-layout .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin: 1.5rem 0; }
+.slidev-layout .flow > div { border-top: 3px solid #173b5c; padding-top: 0.55rem; }
+.slidev-layout .flow strong { display: block; margin-bottom: 0.45rem; }
+.slidev-layout .position-table td:last-child { background: #eaf0f5; }
+.slidev-layout .position-table td { vertical-align: top; }
+.slidev-layout .result-table { margin-top: 0.75rem; }
+.slidev-layout .result-table td:first-child { font-weight: 600; }
+.slidev-layout .result-table tr:nth-child(2) td { background: #eaf0f5; }
+.deck-footer { position: absolute; bottom: 0.65rem; right: 1.2rem; color: #667987; font-size: 0.65rem; }
+
+/* Slidev 0.48's inactive Goto list can remain visible over the presentation. */
+#slidev-goto-dialog { display: none !important; }
+
+.slidev-layout .figure-portfolio { max-height: 21rem; }
