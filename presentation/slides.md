@@ -101,7 +101,7 @@ $$
 <PipelineBox title="End to end training pipeline">
 
 $$
-\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } u_\theta^*(t,z, p_\theta) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
+\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } \longrightarrow\;  u_\theta^*(t,z, p_\theta) \;\longrightarrow\; f(t,z, u_\theta^*) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
 $$
 
 </PipelineBox>
@@ -142,7 +142,6 @@ $$
 $$
 
 
-
 </div>
 
 
@@ -169,7 +168,7 @@ $$
 <PipelineBox title="End to end training pipeline">
 
 $$
-\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } u_\theta^*(t,z, p_\theta) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
+\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } \longrightarrow\;  u_\theta^*(t,z, p_\theta) \;\longrightarrow\; f(t,z, u_\theta^*) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
 $$
 
 </PipelineBox>
@@ -199,7 +198,7 @@ $$
 <PipelineBox title="End to end training pipeline">
 
 $$
-\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } u_\theta^*(t,z, p_\theta) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
+\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \textcolor{red}{,\quad p_\theta' = \nabla_{zz} \phi_\theta(t,z)} \;\longrightarrow\; \text{INN } \longrightarrow\;  u_\theta^*(t,z, p_\theta) \;\longrightarrow\; f(t,z, u_\theta^*) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
 $$
 
 </PipelineBox>
@@ -224,7 +223,6 @@ $$
 
 
 - Gradient flows **only** through the **tracked tail** of length $K'$ — not through the $K$-step convergence loop or the state transitions
-
 
 <!--
 Speaker note: Inner loop on **u**: many Hamiltonian-ascent steps with no graph tape, then a short **tracked** tail (length K′) so only that tail contributes to gradients in **θ** (Term I / JFB). Dynamics in **z** are stepped without differentiating through the transition. Costate **p** is whatever **∇_z φ_θ** implementation you couple into **H** — the narrative here is Pontryagin/HJB bookkeeping, not a claim about computing that gradient by reverse-mode autodiff.
@@ -362,23 +360,22 @@ Speaker: $X(T)-X_0=\int \dot X$ absorbs cash into $L'$; decomposition $\phi=X+\t
 
 ## 1.8. Results
 
-**Plate A** · reduced liquidation $(q,S)$ versus boundary-value benchmark (inventory, rate, residuals, objectives — replace slots with exports).
+**Plate A** · multi-asset liquidation: inventory trajectories $q_i(t)$ and trading rates $u_i(t)$ (slots C–D still open for errors / diagnostics).
 
 <!--
-Example drop-in paths (relative to `presentation/`):
-  ../jfb-for-implicit-oc/results/LiquidationPortfolioOC/benchmark/jfb_vs_exactbvp_benchmark_BIGQ.png
+Additional exports: ../jfb-for-implicit-oc/results/LiquidationPortfolioOC/benchmark/…
 -->
 
 <div class="results-grid">
 
 <div class="plot-slot">
-<div class="plot-slot__label">Plot A</div>
-<span>Benchmark trajectory / inventory</span>
+<div class="plot-slot__label">Plot A · $q_i(t)$</div>
+<img src="/images/multi-q.png" alt="Inventory trajectories q_i versus time." />
 </div>
 
 <div class="plot-slot">
-<div class="plot-slot__label">Plot B</div>
-<span>Control vs time / oracle overlay</span>
+<div class="plot-slot__label">Plot B · $u_i(t)$</div>
+<img src="/images/multi-u.png" alt="Trading rates u_i versus time." />
 </div>
 
 <div class="plot-slot">
@@ -407,12 +404,12 @@ Speaker: cite experiment settings briefly; emphasize agreement with deterministi
 
 <div class="plot-slot">
 <div class="plot-slot__label">Plot E · loss</div>
-<img src="./images/loss-vs-work.png" alt="Loss versus work units (log–log)." />
+<img src="/images/loss-vs-work.png" alt="Loss versus work units (log–log)." />
 </div>
 
 <div class="plot-slot">
 <div class="plot-slot__label">Plot F · memory</div>
-<img src="./images/mem-vs-epochs.png" alt="CPU memory versus training epoch." />
+<img src="/images/mem-vs-epochs.png" alt="CPU memory versus training epoch." />
 </div>
 
 <div class="plot-slot">
@@ -428,7 +425,7 @@ Speaker: cite experiment settings briefly; emphasize agreement with deterministi
 </div>
 
 <!--
-Plots E–F: `./images/loss-vs-work.png`, `./images/mem-vs-epochs.png`. Optional: ../jfb-for-implicit-oc/results/… for rollouts.
+Plots E–F: `/public/images/` → served as `/images/loss-vs-work.png`, `/images/mem-vs-epochs.png`. Optional: ../jfb-for-implicit-oc/results/… for rollouts.
 -->
 
 ---
@@ -438,7 +435,7 @@ Plots E–F: `./images/loss-vs-work.png`, `./images/mem-vs-epochs.png`. Optional
 
 <div id="stochastic-equiv-box" class="equiv-box">
 
-<div class="equiv-box__title">Equivalently</div>
+**Equivalent state**
 
 $$
 \mathrm{d}q = -u\,\mathrm{d}t,\qquad
@@ -447,26 +444,24 @@ $$
 $$
 
 
+**HJB**
+
+<div class="important-box">
+<div class="important-box__label">Important</div>
+
 $$
 \partial_t \phi_\theta + \max_u \left[ L + \nabla_z \phi_\theta^\top f + \tfrac{1}{2}\operatorname{Tr}\bigl(\sigma \sigma^\top \nabla^2_{z} \phi_\theta\bigr) \right] = 0
 $$
 
-
 </div>
 
+</div>
 <div class="stoch-costate-equation">
 
-$$
-\mathrm{d}p_t
-= -\bigl([\partial_z f(t,z^{\star}_t,u^{\star}_t)]^\top p_t + \nabla_z L(t,z^{\star}_t,u^{\star}_t)\bigr)\,\mathrm{d}t
-+ q_t\,\mathrm{d}W_t,
-\qquad
-p(T)=\nabla_z G(z^{\star}_T).
-$$
 
 </div>
 
-$\sigma=\sigma(t,z,u)$ **depends on** $u$ $\Rightarrow$ $\nabla_u \mathcal{H}=0$ equation gains **explicit** diffusion–control coupling
+If $\sigma=\sigma(t,z,u)$ **depends on** $u$ $\Rightarrow$ $\nabla_u \mathcal{H}=0$ equation gains **explicit** diffusion–control coupling
 <!--
 This is the forward-looking slide: stochastic HJB adds a trace term involving the Hessian of $\phi_\theta$. For neural $\phi_\theta$, that raises questions of variance and stability. Control-dependent diffusion couples into the implicit first-order condition for u, altering T_theta. Research questions include efficient JVP/HVP schemes, sample-based pathwise losses, and whether the inner map remains well-posed / contractive after discretization.
 -->
@@ -475,10 +470,12 @@ This is the forward-looking slide: stochastic HJB adds a trace term involving th
 
 ## 1.9.2 Training algorithm - stochastic version - (extra details)
 
+
+
 <PipelineBox title="End to end training pipeline">
 
 $$
-\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \;\longrightarrow\; \text{INN } u_\theta^*(t,z, p_\theta) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
+\phi_\theta(t,z) \;\longrightarrow\; p_\theta = \nabla_z \phi_\theta(t,z) \textcolor{red}{,\quad p_\theta' = \nabla_{zz} \phi_\theta(t,z)} \;\longrightarrow\; \text{INN } \longrightarrow\;  u_\theta^*(t,z, p_\theta) \;\longrightarrow\; f(t,z, u_\theta^*) \;\longrightarrow\; z_x^\theta(t) \;\longrightarrow\; J(\theta)
 $$
 
 </PipelineBox>

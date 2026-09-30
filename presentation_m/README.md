@@ -10,7 +10,7 @@ Depuis la racine du dépôt, sous PowerShell :
 
 ```powershell
 cd presentation_m
-npm.cmd ci
+npm.cmd ci --include=dev --bin-links=true
 npm.cmd run dev
 ```
 
@@ -59,8 +59,8 @@ RL déterministes montrées ici.
 
 ## Sources et sélection
 
-- Slides de départ : `../presentation copy/slides.md` et
-  `../presentation copy/slides-part2-rl.md`.
+- Slides de départ : `../presentation/slides.md` et
+  `../presentation/slides-part2-rl.md`.
 - Rapport : `../ML_for_finance_complex_systems.pdf`, surtout §§5.1–5.8,
   figures 4–5 et annexe A.6.
 - Vérification des conventions : `../jfb-for-implicit-oc/core_RL/`.
@@ -123,9 +123,9 @@ Toutes les images référencées sont dans `public/images/` et servies sous
 
 | Image | Provenance | Utilisation |
 | --- | --- | --- |
-| `hard-gain-comparison.png` | Copie intacte de `presentation copy/images/rl/hardg_comparison_oracle_vs_rls.png` ; même résultat que le rapport Fig. 5 | Slide 7 |
-| `standard-vdp-comparison.png` | Copie intacte de `presentation copy/public/images/rl/vanderpol_oracle_vs_rls.png` | Annexe A7 |
-| `hard-vdp-comparison.png` | Copie intacte de `presentation copy/images/rl/hard_comparison_oracle_vs_rls.png` | Annexe A8 |
+| `hard-gain-comparison.png` | Copie intacte de `presentation/public/images/rl/hardg_comparison_oracle_vs_rls.png` ; même résultat que le rapport Fig. 5 | Slide 7 |
+| `standard-vdp-comparison.png` | Copie intacte de `presentation/public/images/rl/vanderpol_oracle_vs_rls.png` | Annexe A7 |
+| `hard-vdp-comparison.png` | Copie intacte de `presentation/public/images/rl/hard_comparison_oracle_vs_rls.png` | Annexe A8 |
 | `portfolio-report.png` | Image PNG originale embarquée dans le rapport, page 7, Fig. 4 | Annexe A10 |
 
 Les figures ne sont pas retracées et leurs valeurs ne sont pas modifiées.
@@ -134,5 +134,6 @@ export sans référence. Les GIF sont omis pour garder un deck statique et compa
 
 ## Périmètre
 
-Le dossier est autonome. Les slides, le rapport et le code existants ne sont pas
-modifiés. Le nettoyage du dépôt reste une tâche séparée.
+Le dossier est autonome. Ses figures sont volontairement embarquées pour ne pas
+dépendre de la présentation complète. Le renommage du dossier source en
+`presentation/` ne change ni ce deck, ni le rapport, ni le code de recherche.
